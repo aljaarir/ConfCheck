@@ -16,13 +16,18 @@ function clearCheckboxes() {
 }
 
 // Function to save checkbox states in localStorage
+// Function to save checkbox states in localStorage
 function saveCheckboxStates() {
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     const checkboxStates = {};
-    
+
     checkboxes.forEach((checkbox, index) => {
         checkboxStates[`checkbox-${index}`] = checkbox.checked;
     });
+
+    localStorage.setItem('checkboxStates', JSON.stringify(checkboxStates));
+}
+
     
     localStorage.setItem('checkboxStates', JSON.stringify(checkboxStates));
 }
