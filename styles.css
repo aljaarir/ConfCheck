@@ -1,10 +1,12 @@
-body{
+body {
   background-color: #18453B;
+
 }
 
 table {
-  width: 100%;
+  width: 80%; 
   border-collapse: collapse;
+  margin: 10px;
 }
 
 table,
@@ -30,11 +32,11 @@ tr:nth-child(odd) {
 
 h1 {
   text-align: center;
+  color: white;
 }
 
-p{
+p {
   text-align: center;
   color: white;
   font-size: 25px;
 }
-
