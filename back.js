@@ -16,7 +16,6 @@ function clearCheckboxes() {
 }
 
 // Function to save checkbox states in localStorage
-// Function to save checkbox states in localStorage
 function saveCheckboxStates() {
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     const checkboxStates = {};
@@ -28,14 +27,10 @@ function saveCheckboxStates() {
     localStorage.setItem('checkboxStates', JSON.stringify(checkboxStates));
 }
 
-    
-    localStorage.setItem('checkboxStates', JSON.stringify(checkboxStates));
-}
-
 // Function to restore checkbox states from localStorage
 function restoreCheckboxStates() {
     const checkboxStates = JSON.parse(localStorage.getItem('checkboxStates'));
-    
+
     if (checkboxStates) {
         const checkboxes = document.querySelectorAll('input[type="checkbox"]');
         checkboxes.forEach((checkbox, index) => {
@@ -68,7 +63,7 @@ document.querySelectorAll('input[type="checkbox"]').forEach((checkbox, index) =>
     checkbox.addEventListener('change', () => {
         saveCheckboxStates();
     });
-});
+}
 
 // Schedule the function to check and clear checkboxes every Sunday night at 11:59 PM every Sunday
 setInterval(checkAndClearOnSunday, 1000 * 60 * 60 * 24); // Check every 24 hours
