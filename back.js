@@ -28,11 +28,8 @@ function checkAndClearOnSunday() {
 const currentMonday = getCurrentMonday();
 document.getElementById('date').textContent = currentMonday.toDateString();
 
-// Call the function to check and clear checkboxes on page load
-checkAndClearOnSunday();
 
-// Schedule the function to check and clear checkboxes every Sunday night (assuming a specific time)
-// This example schedules it to run at 11:59 PM every Sunday
+// Schedule the function to check and clear checkboxes every Sunday night at 11:59 PM every Sunday
 setInterval(checkAndClearOnSunday, 1000 * 60 * 60 * 24); // Check every 24 hours
 
 
