@@ -1,12 +1,3 @@
-// Function to get the current Monday of the week
-function getCurrentMonday() {
-    const today = new Date();
-    const dayOfWeek = today.getUTCDay(); // 0 for Sunday, 1 for Monday, and so on
-    const daysUntilMonday = dayOfWeek === 1 ? 0 : 1 - dayOfWeek;
-    today.setUTCDate(today.getUTCDate() + daysUntilMonday);
-    return today;
-}
-
 // Function to clear all checkboxes
 function clearCheckboxes() {
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -50,10 +41,6 @@ function checkAndClearOnSunday() {
         clearCheckboxes();
     }
 }
-
-// Display the current Monday of the week
-const currentMonday = getCurrentMonday();
-document.getElementById('date').textContent = currentMonday.toDateString();
 
 // Restore checkbox states when the page loads
 restoreCheckboxStates();
