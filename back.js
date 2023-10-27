@@ -53,23 +53,17 @@ document.getElementById('loginButton').addEventListener('click', function () {
   const loginStatus = document.getElementById('loginStatus');
   const tableContainer = document.getElementById('table-container');
   const loginContainer = document.getElementById('login-container');
-
+  const showPasswordCheckbox = document.getElementById('showPassword');
+  
   if (authenticateUser(username, password)) {
     loginStatus.textContent = 'Login successful.';
     tableContainer.style.display = 'block'; // Show the table
     loginContainer.style.display = 'none'; // Hide the login form
+    showPasswordCheckbox.style.display = 'none'; // Hide the Show Password checkbox
   } else {
     loginStatus.textContent = 'Invalid username or password. Please try again.';
   }
 });
-
-function togglePasswordVisibility() {
-  if (showPasswordCheckbox.checked) {
-    passwordInput.type = 'text'; // Show the password
-  } else {
-    passwordInput.type = 'password'; // Hide the password
-  }
-}
 
 // Function to save checkbox states in localStorage
 function saveCheckboxStates() {
@@ -107,4 +101,3 @@ document.querySelectorAll('input[type="checkbox"]').forEach((checkbox, index) =>
     saveCheckboxStates();
   });
 });
-
