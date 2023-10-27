@@ -1,12 +1,16 @@
 body {
-  background-color: #18453B;
+  background-color: #18453b;
+}
 
+h1 {
+  text-align: center;
+  color: white;
 }
 
 table {
   width: 80%;
   border-collapse: collapse;
-  margin: 0 auto; /* Center the table horizontally */
+  margin: 0 auto;
 }
 
 table,
@@ -19,24 +23,25 @@ th,
 td {
   padding: 5px;
   text-align: center;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 th {
-  background-color: #18453B;
+  background-color: #18453b;
 }
 
 tr:nth-child(odd) {
-  background-color: #0B9A6D;
-}
-
-h1 {
-  text-align: center;
-  color: white;
+  background-color: #0b9a6d;
 }
 
 p {
   text-align: center;
   color: white;
   font-size: 25px;
+}
+
+#login-container
+{
+  text-align: center;
+  color: white;
 }
