@@ -1,4 +1,3 @@
-
 // Function to get the current Monday of the week
 function getCurrentMonday() {
   const today = new Date();
@@ -32,11 +31,12 @@ document.getElementById("date").textContent = currentMonday.toDateString();
 // Schedule the function to check and clear checkboxes every Sunday night at 11:59 PM every Sunday
 setInterval(checkAndClearOnSunday, 1000 * 60 * 60 * 24); // Check every 24 hours
 
-
 /***************************************************************
-*
-*
-****************************************************************/
+ *
+ *
+ ****************************************************************/
+
+let isAuthenticated = false; // Flag to track authentication status
 
 // Function to authenticate the user
 function authenticateUser(username, password) {
@@ -54,9 +54,10 @@ document.getElementById('loginButton').addEventListener('click', function () {
   const tableContainer = document.getElementById('table-container');
   const loginContainer = document.getElementById('login-container');
   const showPasswordCheckbox = document.getElementById('showPassword');
-  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  const checkboxes = document.querySelectorAll('input[type="checkbox']');
 
   if (authenticateUser(username, password)) {
+    isAuthenticated = true; // Set authentication flag to true
     loginStatus.textContent = 'Login successful.';
     tableContainer.classList.remove('blur'); // Remove blur
     loginContainer.style.display = 'none'; // Hide the login form
@@ -66,6 +67,7 @@ document.getElementById('loginButton').addEventListener('click', function () {
       checkbox.disabled = false;
     });
   } else {
+    isAuthenticated = false; // Set authentication flag to false
     loginStatus.textContent = 'Invalid username or password. Please try again.';
     // Disable checkboxes
     checkboxes.forEach((checkbox) => {
@@ -110,3 +112,14 @@ document.querySelectorAll('input[type="checkbox"]').forEach((checkbox, index) =>
     saveCheckboxStates();
   });
 });
+
+// Function to show or hide the table based on authentication status
+function toggleTableVisibility() {
+  const tableContainer = document.getElementById('table-container');
+  if (!isAuthenticated) {
+    tableContainer.classList.add('blur'); // Add blur if not authenticated
+  }
+}
+
+// Call the toggleTableVisibility function to initialize table visibility
+toggleTableVisibility();
