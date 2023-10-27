@@ -111,3 +111,20 @@ document.querySelectorAll('input[type="checkbox"]').forEach((checkbox, index) =>
     saveCheckboxStates();
   });
 });
+
+
+
+function handleRowCheckboxClick(event) {
+    const row = event.target.closest('tr'); // Find the parent row
+    if (row) {
+      const checkboxes = row.querySelectorAll('.checkbox'); // Find all checkboxes in the row
+      for (const checkbox of checkboxes) {
+        checkbox.checked = event.target.checked; // Set the state of all checkboxes in the row
+      }
+    }
+  }
+
+  // Add a click event listener to all first checkboxes in each row
+  const firstCheckboxes = document.querySelectorAll('tr td input[type="checkbox"].checkbox:first-child');
+  for (const checkbox of firstCheckboxes) {
+    checkbox.addEventListener('click', handleRowCheckboxClick);
