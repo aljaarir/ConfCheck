@@ -54,14 +54,23 @@ document.getElementById('loginButton').addEventListener('click', function () {
   const tableContainer = document.getElementById('table-container');
   const loginContainer = document.getElementById('login-container');
   const showPasswordCheckbox = document.getElementById('showPassword');
-  
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
   if (authenticateUser(username, password)) {
     loginStatus.textContent = 'Login successful.';
     tableContainer.style.display = 'block'; // Show the table
     loginContainer.style.display = 'none'; // Hide the login form
     showPasswordCheckbox.style.display = 'none'; // Hide the Show Password checkbox
+    // Enable checkboxes
+    checkboxes.forEach((checkbox) => {
+      checkbox.disabled = false;
+    });
   } else {
     loginStatus.textContent = 'Invalid username or password. Please try again.';
+    // Disable checkboxes
+    checkboxes.forEach((checkbox) => {
+      checkbox.disabled = true;
+    });
   }
 });
 
