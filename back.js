@@ -39,6 +39,7 @@ setInterval(checkAndClearOnSunday, 1000 * 60 * 60 * 24); // Check every 24 hours
 ****************************************************************/
 
 // Function to authenticate the user
+// Function to authenticate the user
 function authenticateUser(username, password) {
   const validUsername = 'MSUFCU';
   const validPassword = 'Intern2023';
@@ -58,7 +59,7 @@ document.getElementById('loginButton').addEventListener('click', function () {
 
   if (authenticateUser(username, password)) {
     loginStatus.textContent = 'Login successful.';
-    tableContainer.style.display = 'block'; // Show the table
+    tableContainer.classList.remove('blur'); // Remove blur
     loginContainer.style.display = 'none'; // Hide the login form
     showPasswordCheckbox.style.display = 'none'; // Hide the Show Password checkbox
     // Enable checkboxes
