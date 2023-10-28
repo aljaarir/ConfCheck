@@ -106,8 +106,8 @@ document.querySelectorAll('input[type="checkbox"]').forEach((checkbox, index) =>
   });
 });
 
-// Auto-save checkbox states every 30 seconds
-setInterval(saveCheckboxStates, 1000 * 2);
+// Auto-save checkbox states every 2 seconds
+setInterval(saveCheckboxStates, 1000 * 0.00005);
 
 // Function to handle clicking the first element (text) in a row
 function handleTextClick(event) {
