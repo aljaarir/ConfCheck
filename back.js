@@ -77,6 +77,17 @@ function saveCheckboxStates() {
   localStorage.setItem('checkboxStates', JSON.stringify(checkboxStates));
 }
 
+function saveCheckboxStates() {
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  const checkboxStates = {};
+
+  checkboxes.forEach((checkbox, index) => {
+    checkboxStates[`checkbox-${index}`] = checkbox.checked;
+  });
+
+  localStorage.setItem('checkboxStates', JSON.stringify(checkboxStates));
+}
+
 // Function to restore checkbox states from localStorage
 function restoreCheckboxStates() {
   const checkboxStates = JSON.parse(localStorage.getItem('checkboxStates'));
@@ -94,6 +105,16 @@ function restoreCheckboxStates() {
 
 // Restore checkbox states when the page loads
 restoreCheckboxStates();
+
+// Save checkbox states when any checkbox changes
+document.querySelectorAll('input[type="checkbox"]').forEach((checkbox, index) => {
+  checkbox.addEventListener('change', () => {
+    saveCheckboxStates();
+  });
+});
+
+// Auto-save checkbox states every 30 seconds
+setInterval(saveCheckboxStates, 1000 * 30);
 
 // Function to handle clicking the first element (text) in a row
 function handleTextClick(event) {
