@@ -24,13 +24,6 @@ function checkAndClearOnSunday() {
   }
 }
 
-// Display the current Monday of the week
-const currentMonday = getCurrentMonday();
-document.getElementById("date").textContent = currentMonday.toDateString();
-
-// Schedule the function to check and clear checkboxes every Sunday night at 11:59 PM every Sunday
-setInterval(checkAndClearOnSunday, 1000 * 60 * 60 * 24); // Check every 24 hours
-
 // Function to authenticate the user
 function authenticateUser(username, password) {
   const validUsername = 'MSUFCU';
@@ -39,7 +32,79 @@ function authenticateUser(username, password) {
   return username === validUsername && password === validPassword;
 }
 
-// Function to handle login button click
+// Function to save checkbox states in localStorage
+function saveCheckboxStates() {
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  const checkboxStates = {};
+
+  checkboxes.forEach((checkbox, index) => {
+    checkboxStates[`checkbox-${index}`] = checkbox.checked;
+  });
+
+  localStorage.setItem('checkboxStates', JSON.stringify(checkboxStates));
+}
+
+// Function to manually save checkbox states when h1 is clicked
+document.querySelector('h1').addEventListener('click', () => {
+  saveCheckboxStates();
+});
+
+// Function to restore checkbox states from localStorage
+function restoreCheckboxStates() {
+  const checkboxStates = JSON.parse(localStorage.getItem('checkboxStates'));
+
+  if (checkboxStates) {
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach((checkbox, index) => {
+      const state = checkboxStates[`checkbox-${index}`];
+      if (state !== undefined) {
+        checkbox.checked = state;
+      }
+    });
+  }
+}
+
+// Function to handle clicking the first element (text) in a row
+function handleTextClick(event) {
+  const target = event.target;
+  if (target.type === 'checkbox') return; // Skip handling if a checkbox was clicked
+
+  const row = target.closest('tr'); // Find the parent row
+  if (row) {
+    const checkboxes = row.querySelectorAll('input[type="checkbox"]');
+    const firstCheckbox = checkboxes[0];
+
+    // Set the state of all checkboxes in the row to match the first checkbox
+    checkboxes.forEach((checkbox) => {
+      checkbox.checked = firstCheckbox.checked;
+    });
+  }
+}
+
+// Add a click event listener to the table to handle clicking the first element (text) in a row
+document.querySelector('table').addEventListener('click', handleTextClick);
+
+// Handle the select-all checkbox
+const selectAllCheckbox = document.querySelector('#selectAll');
+
+selectAllCheckbox.addEventListener('change', function () {
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  checkboxes.forEach((checkbox) => {
+    checkbox.checked = selectAllCheckbox.checked;
+  });
+
+  // Save the checkbox states after changing them
+  saveCheckboxStates();
+});
+
+// Display the current Monday of the week
+const currentMonday = getCurrentMonday();
+document.getElementById("date").textContent = currentMonday.toDateString();
+
+// Schedule the function to check and clear checkboxes every Sunday night at 11:59 PM every Sunday
+setInterval(checkAndClearOnSunday, 1000 * 60 * 60 * 24); // Check every 24 hours
+
+// Handle the login button click
 document.getElementById('loginButton').addEventListener('click', function () {
   const username = document.getElementById('username').value;
   const password = document.getElementById('password').value;
@@ -65,66 +130,8 @@ document.getElementById('loginButton').addEventListener('click', function () {
   }
 });
 
-// Function to save checkbox states in localStorage
-function saveCheckboxStates() {
-  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-  const checkboxStates = {};
-
-  checkboxes.forEach((checkbox, index) => {
-    checkboxStates[`checkbox-${index}`] = checkbox.checked;
-  });
-
-  localStorage.setItem('checkboxStates', JSON.stringify(checkboxStates));
-}
-
-// Function to manually save checkbox states when h1 is clicked
-document.querySelector('h1').addEventListener('click', () => {
-  saveCheckboxStates();
-});
-
 // Restore checkbox states when the page loads
-function restoreCheckboxStates() {
-  const checkboxStates = JSON.parse(localStorage.getItem('checkboxStates'));
+restoreCheckboxStates();
 
-  if (checkboxStates) {
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    checkboxes.forEach((checkbox, index) => {
-      const state = checkboxStates[`checkbox-${index}`];
-      if (state !== undefined) {
-        checkbox.checked = state;
-      }
-    });
-  }
-}
-
-restoreCheckboxStates(); // Restore checkbox states when the page loads
-
-// Save checkbox states when any checkbox changes
-document.querySelectorAll('input[type="checkbox"]').forEach((checkbox, index) => {
-  checkbox.addEventListener('change', () => {
-    saveCheckboxStates();
-  });
-});
-
-// Auto-save checkbox states every 30 seconds
+// Save checkbox states every 30 seconds
 setInterval(saveCheckboxStates, 1000 * 30);
-
-// Function to handle clicking the first element (text) in a row
-function handleTextClick(event) {
-  const target = event.target;
-  if (target.type === 'checkbox') return; // Skip handling if a checkbox was clicked
-
-  const row = target.closest('tr'); // Find the parent row
-  if (row) {
-    const checkboxes = row.querySelectorAll('input[type="checkbox"]');
-    const firstCheckbox = checkboxes[0];
-
-    // Set the state of all checkboxes in the row to match the first checkbox
-    checkboxes.forEach((checkbox) => {
-      checkbox.checked = firstCheckbox.checked;
-    });
-  }
-}
-
-// Add a click event listener to the table to handle clicking the first element (text) in a row
-document.querySelector('table').addEventListener('click', handleTextClick);
