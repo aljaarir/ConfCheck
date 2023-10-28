@@ -66,7 +66,7 @@ document.getElementById('loginButton').addEventListener('click', function () {
       checkbox.disabled = false;
     });
   } else {
-    loginStatus.textContent = 'Invalid username or password. Please try again.';
+    loginStatus.textContent = 'Invalid username or password. Please refresh page & try again.';
     // Add blur and disable checkboxes
     tableContainer.classList.add('blur');
     checkboxes.forEach((checkbox) => {
