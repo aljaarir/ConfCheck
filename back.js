@@ -1,4 +1,3 @@
-
 // Function to get the current Monday of the week
 function getCurrentMonday() {
   const today = new Date();
@@ -32,12 +31,6 @@ document.getElementById("date").textContent = currentMonday.toDateString();
 // Schedule the function to check and clear checkboxes every Sunday night at 11:59 PM every Sunday
 setInterval(checkAndClearOnSunday, 1000 * 60 * 60 * 24); // Check every 24 hours
 
-
-/***************************************************************
-*
-*
-****************************************************************/
-
 // Function to authenticate the user
 function authenticateUser(username, password) {
   const validUsername = 'MSUFCU';
@@ -66,12 +59,9 @@ document.getElementById('loginButton').addEventListener('click', function () {
       checkbox.disabled = false;
     });
   } else {
-    loginStatus.textContent = 'Invalid username or password. Please refresh page & try again.';
+    loginStatus.textContent = 'Invalid username or password. Please refresh the page and try again.';
     // Add blur and disable checkboxes
     tableContainer.classList.add('blur');
-    checkboxes.forEach((checkbox) => {
-      checkbox.disabled = true;
-    });
   }
 });
 
@@ -105,20 +95,7 @@ function restoreCheckboxStates() {
 // Restore checkbox states when the page loads
 restoreCheckboxStates();
 
-// Save checkbox states when any checkbox changes
-document.querySelectorAll('input[type="checkbox"]').forEach((checkbox, index) => {
-  checkbox.addEventListener('change', () => {
-    saveCheckboxStates();
-  });
-});
-
-
-/***************************************************************
-* Check off all boxes for a row
-*
-****************************************************************/
-
- // Function to handle clicking the first element (text) in a row
+// Function to handle clicking the first element (text) in a row
 function handleTextClick(event) {
   const target = event.target;
   if (target.type === 'checkbox') return; // Skip handling if a checkbox was clicked
