@@ -114,7 +114,7 @@ document.querySelectorAll('input[type="checkbox"]').forEach((checkbox, index) =>
 
 
 /***************************************************************
-*
+* Check off all boxes for a row
 *
 ****************************************************************/
 
@@ -125,16 +125,13 @@ function handleTextClick(event) {
 
   const row = target.closest('tr'); // Find the parent row
   if (row) {
-    const checkboxes = row.querySelectorAll('.checkbox');
+    const checkboxes = row.querySelectorAll('input[type="checkbox"]');
     const firstCheckbox = checkboxes[0];
 
-    // Toggle the state of the first checkbox to control the entire row
-    firstCheckbox.checked = !firstCheckbox.checked;
-
-    // Set the state of all other checkboxes in the row to match the first checkbox
-    for (let i = 1; i < checkboxes.length; i++) {
-      checkboxes[i].checked = firstCheckbox.checked;
-    }
+    // Set the state of all checkboxes in the row to match the first checkbox
+    checkboxes.forEach((checkbox) => {
+      checkbox.checked = firstCheckbox.checked;
+    });
   }
 }
 
