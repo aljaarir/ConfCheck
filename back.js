@@ -99,16 +99,6 @@ function restoreCheckboxStates() {
 
 restoreCheckboxStates(); // Restore checkbox states when the page loads
 
-// Save checkbox states when any checkbox changes
-document.querySelectorAll('input[type="checkbox"]').forEach((checkbox, index) => {
-  checkbox.addEventListener('change', () => {
-    saveCheckboxStates();
-  });
-});
-
-// Auto-save checkbox states every 30 seconds
-setInterval(saveCheckboxStates, 1000 * 30);
-
 // Function to handle clicking the first element (text) in a row
 function handleTextClick(event) {
   const target = event.target;
@@ -123,9 +113,23 @@ function handleTextClick(event) {
     checkboxes.forEach((checkbox) => {
       checkbox.checked = firstCheckbox.checked;
     });
-     saveCheckboxStates();
+
+    saveCheckboxStates(); // Save the state after updating checkboxes
   }
 }
 
 // Add a click event listener to the table to handle clicking the first element (text) in a row
 document.querySelector('table').addEventListener('click', handleTextClick);
+
+// Function to handle the "Select All" checkbox
+function handleSelectAll(event) {
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  checkboxes.forEach((checkbox) => {
+    checkbox.checked = event.target.checked;
+  });
+
+  saveCheckboxStates(); // Save the state after updating checkboxes
+}
+
+// Add a click event listener to the "Select All" checkbox
+document.getElementById('selectAll').addEventListener('click', handleSelectAll);
