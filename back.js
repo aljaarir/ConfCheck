@@ -77,18 +77,12 @@ function saveCheckboxStates() {
   localStorage.setItem('checkboxStates', JSON.stringify(checkboxStates));
 }
 
-function saveCheckboxStates() {
-  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-  const checkboxStates = {};
+// Function to manually save checkbox states when h1 is clicked
+document.querySelector('h1').addEventListener('click', () => {
+  saveCheckboxStates();
+});
 
-  checkboxes.forEach((checkbox, index) => {
-    checkboxStates[`checkbox-${index}`] = checkbox.checked;
-  });
-
-  localStorage.setItem('checkboxStates', JSON.stringify(checkboxStates));
-}
-
-// Function to restore checkbox states from localStorage
+// Restore checkbox states when the page loads
 function restoreCheckboxStates() {
   const checkboxStates = JSON.parse(localStorage.getItem('checkboxStates'));
 
@@ -103,8 +97,7 @@ function restoreCheckboxStates() {
   }
 }
 
-// Restore checkbox states when the page loads
-restoreCheckboxStates();
+restoreCheckboxStates(); // Restore checkbox states when the page loads
 
 // Save checkbox states when any checkbox changes
 document.querySelectorAll('input[type="checkbox"]').forEach((checkbox, index) => {
