@@ -8,7 +8,8 @@ h1 {
 }
 
 table {
-  width: 80%;
+  width: 70%;
+  height: 70%;
   border-collapse: collapse;
   margin: 0 auto;
 }
@@ -21,7 +22,7 @@ td {
 
 th,
 td {
-  padding: 5px;
+  padding: 3px;
   text-align: center;
   color: #ffffff;
 }
@@ -49,4 +50,10 @@ p {
 .blur {
   filter: blur(50px);
   pointer-events: none; /* Prevent interactions with blurred elements */
+}
+
+textarea{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
