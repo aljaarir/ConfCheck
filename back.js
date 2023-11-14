@@ -138,3 +138,14 @@ function handleDateClick() {
 // Add a click event listener to the date element
 const dateElement = document.getElementById("date");
 dateElement.addEventListener("click", handleDateClick);
+
+// Function to save text from textarea into local storage
+function saveTextToLocalStorage() {
+  const textarea = document.querySelector('textarea');
+  if (textarea) {
+    const text = textarea.value;
+    localStorage.setItem('savedText', text);
+  }
+}
+
+setInterval(saveTextToLocalStorage, 5);
