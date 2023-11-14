@@ -15,21 +15,11 @@ function clearCheckboxes() {
   });
 }
 
-// Function to check and clear checkboxes on Sunday night
-function checkAndClearOnSunday() {
-  const today = new Date();
-  if (today.getUTCDay() === 0) {
-    // It's Sunday, clear checkboxes
-    clearCheckboxes();
-  }
-}
 
 // Display the current Monday of the week
 const currentMonday = getCurrentMonday();
 document.getElementById("date").textContent = currentMonday.toDateString();
 
-// Schedule the function to check and clear checkboxes every Sunday night at 11:59 PM every Sunday
-setInterval(checkAndClearOnSunday, 1000 * 60 * 60 * 24); // Check every 24 hours
 
 // Function to authenticate the user
 function authenticateUser(username, password) {
@@ -139,3 +129,12 @@ table.addEventListener("click", function (event) {
     handleTextClick(event);
   }
 });
+
+
+function handleDateClick() {
+  clearCheckboxes();
+}
+
+// Add a click event listener to the date element
+const dateElement = document.getElementById("date");
+dateElement.addEventListener("click", handleDateClick);
