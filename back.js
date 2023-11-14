@@ -53,7 +53,6 @@ document.getElementById("loginButton").addEventListener("click", function () {
     loginStatus.textContent = "Login successful.";
     tableContainer.classList.remove("blur"); // Remove blur
     loginContainer.style.display = "none"; // Hide the login form
-    showPasswordCheckbox.style.display = "none"; // Hide the Show Password checkbox
     // Enable checkboxes
     checkboxes.forEach((checkbox) => {
       checkbox.disabled = false;
@@ -130,9 +129,13 @@ function handleTextClick(event) {
 }
 
 // Add a click event listener to the table to handle clicking the first element (text) in a row
+
 const table = document.querySelector("table");
 
 table.addEventListener("click", function (event) {
   const target = event.target;
   if (target.tagName === "TD" && target.parentElement.firstElementChild === target) {
     // Check if the clicked element is a TD and is the first child in the row
+    handleTextClick(event);
+  }
+});
