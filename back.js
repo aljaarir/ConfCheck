@@ -148,4 +148,17 @@ function saveTextToLocalStorage() {
   }
 }
 
+// Function to load saved text from local storage
+function loadTextFromLocalStorage() {
+  const textarea = document.querySelector('textarea');
+  if (textarea) {
+    const savedText = localStorage.getItem('savedText');
+    textarea.value = savedText || ''; // Set the value to savedText if it exists, otherwise, set it to an empty string
+  }
+}
+
+// Auto-save text every 5 miliseconds
 setInterval(saveTextToLocalStorage, 5);
+
+// Load saved text on page load
+window.addEventListener('load', loadTextFromLocalStorage);
